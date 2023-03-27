@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "proxy": "http://naigtest.pythonanywhere.com",
+  "proxy": "http://naigtest.pythonanywhere.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
