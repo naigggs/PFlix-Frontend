@@ -38,7 +38,7 @@ function GenreProductsScreen() {
     <div><br />
       <div class='text-center' variant='light'>
         <h1>Movie List</h1>
-        <Form>
+        {/* <Form>
             <Row><Col md={3} />
               <Col md={6}>
                 <Form.Control onChange={(e) => setSearch(e.target.value)}
@@ -49,7 +49,7 @@ function GenreProductsScreen() {
                 />
               </Col>
             </Row>
-          </Form><br />
+          </Form><br /> */}
       </div>
       <br />
       <Container fluid>
@@ -60,14 +60,16 @@ function GenreProductsScreen() {
             </Col>
           ))} */}
           
-          {genreproduct.filter((product) => {
+          {/* {genreproduct.filter((product) => {
               return search.toLowerCase() === '' ?
                 product : product.name.toLowerCase().includes(search) ||
                 product.description.toLowerCase().includes(search) ||
                 product.genre.toLowerCase().includes(search) ||
                 product.genre_two.toLowerCase().includes(search) ||
                 product.genre_three.toLowerCase().includes(search);
-            }).map(product => (
+            }) */}
+            
+            {genreproduct.map(product => (
             <Col className='row g-1' key={product._id} sm={12} md={6} lg={4} xl={3}>
               <DirectorProducts product={product} />
             </Col>
