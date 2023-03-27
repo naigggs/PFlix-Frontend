@@ -69,11 +69,11 @@ function GenreProductsScreen() {
                 product.genre_three.toLowerCase().includes(search);
             }) */}
             
-            {genreproduct.map(product => (
+            {/* {genreproduct.map(product => (
             <Col className='row g-1' key={product._id} sm={12} md={6} lg={4} xl={3}>
               <DirectorProducts product={product} />
             </Col>
-          ))}
+          ))} */}
         </Row>
       </Container>
     </div>
