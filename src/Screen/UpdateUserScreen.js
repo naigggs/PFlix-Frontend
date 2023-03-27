@@ -27,8 +27,8 @@ function UpdateUserScreen() {
 
     formField.append("email", email);
     formField.append("password", password);
-    // formField.append("first_name", first_name);
-    // formField.append("last_name", last_name);
+    formField.append("first_name", first_name);
+    formField.append("last_name", last_name);
 
     dispatch(updateUserInfo(id, formField)).then((response) => {
       navigate("/userlist");
@@ -95,7 +95,24 @@ function UpdateUserScreen() {
                     onChange={(e) => setLastname(e.target.value)}
                   />
                 </Form.Group> */}
-
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>First Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter First Name"
+                    value={first_name}
+                    onChange={(e) => setFirstname(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Last Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter Last Name"
+                    value={last_name}
+                    onChange={(e) => setLastname(e.target.value)}
+                  />
+                </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
                   <Form.Control

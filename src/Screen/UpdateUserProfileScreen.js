@@ -7,8 +7,6 @@ import Loader from "../Components/Loader";
 
 function UpdateUserProfileScreen() {
   const [password, setPassword] = useState("");
-  const [first_name, setFirstname] = useState("");
-  const [last_name, setLastname] = useState("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -22,6 +20,8 @@ function UpdateUserProfileScreen() {
     navigate("/login");
   }
   const [email, setEmail] = useState(userInfo.email);
+  const [first_name, setFirstname] = useState(userInfo.first_name);
+  const [last_name, setLastname] = useState(userInfo.last_name);
 
   const UpdateUserInfo = async () => {
     let formField = new FormData();
@@ -62,13 +62,13 @@ function UpdateUserProfileScreen() {
       UpdateUserInfo();
     }
   };
-  const userUpdate = useSelector(state => state.userUpdate)
-  const {loading} = userUpdate
+  const userUpdate = useSelector((state) => state.userUpdate);
+  const { loading } = userUpdate;
   return (
     <div>
       <br />
       <div class="text-center">
-        <h1>Update Profile 1</h1>
+        <h1>Update Profile</h1>
       </div>
       {loading && <Loader />}
       <div class="container">
@@ -95,7 +95,24 @@ function UpdateUserProfileScreen() {
                     onChange={(e) => setLastname(e.target.value)}
                   />
                 </Form.Group> */}
-
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>First Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder={userInfo.first_name}
+                    value={first_name}
+                    onChange={(e) => setFirstname(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Last Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder={userInfo.last_name}
+                    value={last_name}
+                    onChange={(e) => setLastname(e.target.value)}
+                  />
+                </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
                   <Form.Control
