@@ -9,6 +9,8 @@ const CancelSubscriptionAdmin = ({ subscriptionId, accessToken, id }) => {
   const [success, setSuccess] = useState(false);
   const dispatch = useDispatch()
   const cancelSubscription2 = async () => {
+
+    if (window.confirm('Are you sure you want to cancel the subscription?')) {
     
     try {
       const response = await axios.post(
@@ -37,6 +39,7 @@ const CancelSubscriptionAdmin = ({ subscriptionId, accessToken, id }) => {
       setSuccess(false);
       setError(error.message);
     }
+   } 
   };
 
   return (

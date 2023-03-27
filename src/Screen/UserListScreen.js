@@ -121,7 +121,11 @@ const UserListScreen = () => {
                   ? user
                   : user.email.toLowerCase().includes(search) ||
                       user.first_name.toLowerCase().includes(search) ||
-                      user.last_name.toLowerCase().includes(search);
+                      user.last_name.toLowerCase().includes(search) ||
+                      user.subscription_id.toLowerCase().includes(search) ||
+                      user.last_name.toLowerCase().includes(search) ||
+                      (user.isSubscriber && search.toLowerCase() === "active") ||
+                      (!user.isSubscriber && search.toLowerCase() === "inactive");
               })
               .map((users) => {
                 return (
