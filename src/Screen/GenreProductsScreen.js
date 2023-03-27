@@ -14,8 +14,6 @@ function GenreProductsScreen() {
   let navigate = useNavigate()
   let dispatch = useDispatch()
   const { userInfo } = userLogin;
-  const genreMovies = useSelector((state) => state.genreMovies);
-  const { genreproducts1 } = genreMovies;
 
   if (!userInfo) {
     navigate('/login');
@@ -26,7 +24,7 @@ function GenreProductsScreen() {
   }
   useEffect(() => {
     async function fetchGenreProducts() {
-      const { data } = await axios.get(`/api/genreproducts/${id}`)
+      const { data } = await axios.get(`https://naigtest.pythonanywhere.com/api/genreproducts/${id}`)
       setGenreProducts(data);
     }
     fetchGenreProducts()
@@ -60,20 +58,18 @@ function GenreProductsScreen() {
             </Col>
           ))} */}
           
-          {/* {genreproduct.filter((product) => {
+          {genreproduct.filter((product) => {
               return search.toLowerCase() === '' ?
                 product : product.name.toLowerCase().includes(search) ||
                 product.description.toLowerCase().includes(search) ||
                 product.genre.toLowerCase().includes(search) ||
                 product.genre_two.toLowerCase().includes(search) ||
                 product.genre_three.toLowerCase().includes(search);
-            }) */}
-            
-            {/* {genreproduct.map(product => (
+            }).map(product => (
             <Col className='row g-1' key={product._id} sm={12} md={6} lg={4} xl={3}>
               <DirectorProducts product={product} />
             </Col>
-          ))} */}
+          ))}
         </Row>
       </Container>
     </div>

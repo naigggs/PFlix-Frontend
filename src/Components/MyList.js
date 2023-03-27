@@ -40,7 +40,7 @@ function MyList1() {
 
   useEffect(() => {
     axios
-      .get("/api/products")
+      .get("https://naigtest.pythonanywhere.com/api/products")
       .then((response) => {
         setProducts(response.data);
       })

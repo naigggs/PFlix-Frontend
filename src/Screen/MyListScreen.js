@@ -18,16 +18,17 @@ function MyListScreen() {
   let navigate = useNavigate();
   const { userInfo } = userLogin;
 
-  if (!userInfo) {
-    navigate("/login");
-  } else {
-    if (!userInfo.isSubscriber) {
-      navigate("/plans");
-    }
-  }
   useEffect(() => {
+    if (!userInfo) {
+      navigate("/login");
+    } else {
+      if (!userInfo.isSubscriber) {
+        navigate("/plans");
+      }
+    }
+
     dispatch(listProducts());
-  }, []);
+  }, [navigate, userInfo]);
   const productList = useSelector((state) => state.productList);
   const { error, loading, products } = productList;
 
@@ -64,27 +65,30 @@ function MyListScreen() {
           <br />
         </div>
         <Row>
-        {mappedProducts.filter((product) => {
-              return search.toLowerCase() === '' ?
-                product : product.name.toLowerCase().includes(search) ||
-                product.description.toLowerCase().includes(search) ||
-                product.genre.toLowerCase().includes(search) ||
-                product.genre_two.toLowerCase().includes(search) ||
-                product.genre_three.toLowerCase().includes(search);
-            }).map((product) => {
-            return (
-              <Col
-                className="row g-1"
-                key={product._id}
-                sm={12}
-                md={6}
-                lg={4}
-                xl={3}
-              >
-                <Product product={product} />
-              </Col>
-            );
-          })}
+          {mappedProducts
+            .filter((product) => {
+              return search.toLowerCase() === ""
+                ? product
+                : product.name.toLowerCase().includes(search) ||
+                    product.description.toLowerCase().includes(search) ||
+                    product.genre.toLowerCase().includes(search) ||
+                    product.genre_two.toLowerCase().includes(search) ||
+                    product.genre_three.toLowerCase().includes(search);
+            })
+            .map((product) => {
+              return (
+                <Col
+                  className="row g-1"
+                  key={product._id}
+                  sm={12}
+                  md={6}
+                  lg={4}
+                  xl={3}
+                >
+                  <Product product={product} />
+                </Col>
+              );
+            })}
         </Row>
       </Container>
     </div>

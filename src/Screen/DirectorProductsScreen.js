@@ -21,7 +21,7 @@ function DirectorProductsScreen() {
   }
   useEffect(() =>{
     async function fetchDirectorProducts(){
-      const {data} = await axios.get(`/api/directorproducts/${id}`)
+      const {data} = await axios.get(`https://naigtest.pythonanywhere.com/api/directorproducts/${id}`)
       setDirectorProducts(data);
     }
     fetchDirectorProducts()
