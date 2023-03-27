@@ -7,6 +7,9 @@ import { addProduct } from "../Actions/productActions";
 import { Link } from "react-router-dom";
 import { listGenres } from "../Actions/genreActions";
 import { listDirectors } from "../Actions/directorActions";
+import Loader from '../Components/Loader'
+import Message from '../Components/Message'
+
 
 function AddProductScreen() {
   const [name, setName] = useState("");
@@ -52,6 +55,9 @@ function AddProductScreen() {
     setGenre(genres)
   }, []);
 
+  const productCreate = useSelector(state => state.productCreate) 
+  const {loading} = productCreate
+
   const directorList = useSelector((state) => state.directorList);
   const { directors } = directorList;
   useEffect(() => {
@@ -95,6 +101,7 @@ function AddProductScreen() {
       <div class="text-center" variant="light">
         <h1>Add Movie</h1>
       </div>
+      {loading && <Loader />}
       <Container>
         <Link className="btn btn-light my-3" to="/movielist">
           Go Back

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { updateUserInfo } from "../Actions/accountActions";
+import Loader from "../Components/Loader";
 
 function UpdateUserScreen() {
   const { id } = useParams();
@@ -61,12 +62,15 @@ function UpdateUserScreen() {
       navigate("/");
     }
   }
+  const userUpdate = useSelector((state) => state.userUpdate);
+  const { loading } = userUpdate;
   return (
     <div>
       <br />
       <div class="text-center">
         <h1>Update Profile</h1>
       </div>
+      {loading && <Loader />}
       <div class="container">
         <div class="row">
           <div class="row justify-content-center mt-5">

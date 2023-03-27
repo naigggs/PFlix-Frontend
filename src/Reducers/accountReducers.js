@@ -9,6 +9,9 @@ import {
   ACCOUNT_UPDATE_REQUEST,
   ACCOUNT_UPDATE_SUCCESS,
   ACCOUNT_UPDATE_FAIL,
+  ACCOUNT_ADD_REQUEST,
+  ACCOUNT_ADD_SUCCESS,
+  ACCOUNT_ADD_FAIL,
   USER_DETAILS_REQUEST,
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
@@ -103,6 +106,25 @@ export const UserListReducer = (state = { users: [] }, action) => {
       return { loading: false, users: action.payload };
     case USER_LIST_FAIL:
       return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export const userRegisterReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ACCOUNT_ADD_REQUEST:
+      return { loading: true };
+
+    case ACCOUNT_ADD_SUCCESS:
+      return { loading: false, userInfo: action.payload };
+
+    case ACCOUNT_ADD_FAIL:
+      return { loading: false, error: action.payload };
+
+    case USER_LOGOUT:
+      return {};
 
     default:
       return state;

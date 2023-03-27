@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { addAccount } from "../Actions/accountActions";
+import Loader from "../Components/Loader";
+import { useSelector } from "react-redux";
 
 function Registerscreen() {
   const [email, setEmail] = useState("");
@@ -47,31 +49,28 @@ function Registerscreen() {
       return;
     }
 
-    if (password.trim().length<6 ) {
+    if (password.trim().length < 6) {
       setError("Password must be 6 characters long");
       return;
-    }
-
-    else {
+    } else {
       AddUserInfo();
     }
-
-
   };
-
-
+  const userRegister = useSelector(state => state.userRegister)
+  const {loading} = userRegister
   return (
     <div>
       <br />
       <div class="text-center">
         <h1>Sign Up</h1>
       </div>
+      {loading && <Loader />}
       <div class="container">
         <div class="row">
           <div class="row justify-content-center mt-5">
             <div class="col-sm-6 col-12">
               <Form>
-                <Form.Group className="mb-3" >
+                <Form.Group className="mb-3">
                   <Form.Label>First Name</Form.Label>
                   <Form.Control
                     type="text"
@@ -104,10 +103,7 @@ function Registerscreen() {
                   </Form.Text>
                 </Form.Group>
 
-                <Form.Group
-                  onSubmit={handleSubmit}
-                  className="mb-3"
-                >
+                <Form.Group onSubmit={handleSubmit} className="mb-3">
                   <Form.Label>Password</Form.Label>
                   <Form.Control
                     type="password"

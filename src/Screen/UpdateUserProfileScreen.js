@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { updateAccount } from "../Actions/accountActions";
+import Loader from "../Components/Loader";
 
 function UpdateUserProfileScreen() {
-
- 
   const [password, setPassword] = useState("");
   const [first_name, setFirstname] = useState("");
   const [last_name, setLastname] = useState("");
@@ -20,7 +19,7 @@ function UpdateUserProfileScreen() {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   if (!userInfo) {
-    navigate('/login');
+    navigate("/login");
   }
   const [email, setEmail] = useState(userInfo.email);
 
@@ -48,9 +47,9 @@ function UpdateUserProfileScreen() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if ( !email || !password || !confirmPassword) {
+    if (!email || !password || !confirmPassword) {
       setError("All Fields Required");
-    } 
+    }
 
     if (!email.includes("@gmail.com")) {
       setError("Email must end with @gmail.com");
@@ -59,19 +58,19 @@ function UpdateUserProfileScreen() {
 
     if (password !== confirmPassword) {
       setError("Passwords do not match");
-    } 
-    
-    else {
+    } else {
       UpdateUserInfo();
     }
   };
- 
+  const userUpdate = useSelector(state => state.userUpdate)
+  const {loading} = userUpdate
   return (
     <div>
       <br />
       <div class="text-center">
         <h1>Update Profile 1</h1>
       </div>
+      {loading && <Loader />}
       <div class="container">
         <div class="row">
           <div class="row justify-content-center mt-5">
@@ -110,10 +109,7 @@ function UpdateUserProfileScreen() {
                   </Form.Text>
                 </Form.Group>
 
-                <Form.Group
-                  onSubmit={handleSubmit}
-                  className="mb-3"
-                >
+                <Form.Group onSubmit={handleSubmit} className="mb-3">
                   <Form.Label>Password</Form.Label>
                   <Form.Control
                     type="password"

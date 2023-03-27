@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { addGenre } from "../Actions/genreActions";
 import { Link } from "react-router-dom";
 import { listGenres } from "../Actions/genreActions";
+import Loader from "../Components/Loader";
 
 function AddGenreScreen() {
   const [name, setName] = useState("");
@@ -53,12 +54,16 @@ function AddGenreScreen() {
     }
   };
 
+
+  const genreCreate = useSelector(state => state.genreCreate)
+  const {loading} = genreCreate
   return (
     <div>
       <br />
       <div class="text-center" variant="light">
         <h1>Add Genre</h1>
       </div>
+      {loading && <Loader />}
       <Container>
         <Form>
           <Form.Group className="mb-3">

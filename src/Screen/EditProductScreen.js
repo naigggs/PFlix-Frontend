@@ -11,6 +11,7 @@ import {
 import { Link, useParams } from "react-router-dom";
 import { listGenres } from "../Actions/genreActions";
 import { listDirectors } from "../Actions/directorActions";
+import Loader from "../Components/Loader";
 
 function EditProductScreen() {
   const { id } = useParams();
@@ -98,12 +99,16 @@ function EditProductScreen() {
       AddProductInfo();
     }
   };
+
+  const productEdit = useSelector((state) => state.productEdit);
+  const { loading } = productEdit;
   return (
     <div>
       <br />
       <div class="text-center" variant="light">
         <h1>Edit Movie Info</h1>
       </div>
+      {loading && <Loader />}
       <Container>
         <Link className="btn btn-light my-3" to="/movielist">
           Go Back
@@ -231,7 +236,7 @@ function EditProductScreen() {
           <div style={{ fontSize: 22 }}>{error && <div>{error}</div>}</div>
           <br />
           <Button className="btn btn-primary" onClick={handleSubmit}>
-            Add Product
+            Update Product
           </Button>
         </Form>
       </Container>
