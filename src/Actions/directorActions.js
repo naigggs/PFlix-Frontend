@@ -17,7 +17,7 @@ export const listDirectors = () => async (dispatch) => {
       type: DIRECTORS_LIST_REQUEST,
     });
 
-    const { data } = await axios.get("/api/directors"); //fetch the products from rest api
+    const { data } = await axios.get("https://naigtest.pythonanywhere.com/api/directors"); //fetch the products from rest api
 
     dispatch({
       type: DIRECTORS_LIST_SUCCESS,
@@ -46,7 +46,7 @@ export const detailDirector = () => async (dispatch, getState) => {
 
     console.log(product)
 
-    const { data } = await axios.get(`/api/directors/${product.director}`); //fetch the products from rest api
+    const { data } = await axios.get(`https://naigtest.pythonanywhere.com/api/directors/${product.director}`); //fetch the products from rest api
 
     dispatch({
       type: DIRECTORS_DETAILS_SUCCESS,
@@ -69,7 +69,7 @@ export const addDirector = (director) => async (dispatch) => {
       type: DIRECTORS_ADD_REQUEST,
     });
 
-    const { data } = await axios.post("/api/director/create", director); //create a new product
+    const { data } = await axios.post("https://naigtest.pythonanywhere.com/api/director/create", director); //create a new product
 
     dispatch({
       type: DIRECTORS_ADD_SUCCESS,

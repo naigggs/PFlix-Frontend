@@ -28,7 +28,7 @@ export const addProduct = (product) => async (dispatch) => {
             type: PRODUCT_ADD_REQUEST,
         });
 
-        const { data } = await axios.post('/api/products/create', product); //create a new product
+        const { data } = await axios.post('https://naigtest.pythonanywhere.com/api/products/create', product); //create a new product
 
         dispatch({
             type: PRODUCT_ADD_SUCCESS,
@@ -53,7 +53,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
         })
 
         const { data } = await axios.delete(
-            `/api/products/delete/${id}/`,
+            `https://naigtest.pythonanywhere.com/api/products/delete/${id}/`,
         )
 
         dispatch({
@@ -77,7 +77,7 @@ export const editProduct = (id, product) => async (dispatch, getState) => {
             type: PRODUCT_EDIT_REQUEST,
         });
 
-        const { data } = await axios.put(`/api/products/update/${id}/`, product)
+        const { data } = await axios.put(`https://naigtest.pythonanywhere.com/api/products/update/${id}/`, product)
 
         dispatch({
             type: PRODUCT_EDIT_SUCCESS,
@@ -108,7 +108,7 @@ export const listProducts = () => async (dispatch) => {
             type: PRODUCT_LIST_REQUEST,
         });
 
-        const { data } = await axios.get('/api/products'); //fetch the products from rest api
+        const { data } = await axios.get('https://naigtest.pythonanywhere.com/api/products'); //fetch the products from rest api
 
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
@@ -132,7 +132,7 @@ export const listProductDetails = (id) => async (dispatch) => {
             type: PRODUCT_DETAILS_REQUEST,
         });
 
-        const { data } = await axios.get(`/api/products/${id}`); //fetch the products from rest api
+        const { data } = await axios.get(`https://naigtest.pythonanywhere.com/api/products/${id}`); //fetch the products from rest api
 
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
