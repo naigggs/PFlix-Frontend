@@ -21,7 +21,7 @@ function Header() {
 
   const navigate = useNavigate();
   const logoutHandler = () => {
-    navigate("/login")
+    navigate("/login");
     dispatch(logout());
   };
   return (
@@ -56,14 +56,20 @@ function Header() {
               >
                 <i class="fa fa-video-camera" aria-hidden="true"></i> Genres
               </Link>
-              <Link
-                to="/mylist"
-                type="button"
-                class="btn btn-black"
-                style={{ color: "#FFF" }}
-              >
-                <i class="fa fa-list-ul" aria-hidden="true"></i> Mylist
-              </Link>
+
+              {userInfo ? (
+                <Link
+                  to="/mylist"
+                  type="button"
+                  class="btn btn-black"
+                  style={{ color: "#FFF" }}
+                >
+                  <i class="fa fa-list-ul" aria-hidden="true"></i> Mylist
+                </Link>
+              ) : (
+                <div />
+              )}
+
               {userInfo ? (
                 !userInfo.isAdmin ? (
                   <div />

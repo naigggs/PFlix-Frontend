@@ -17,22 +17,23 @@ function MyListScreen() {
   const userLogin = useSelector((state) => state.userLogin);
   let navigate = useNavigate();
   const { userInfo } = userLogin;
+  const productIds = userInfo.mylist;
 
-  useEffect(() => {
-    if (!userInfo) {
-      navigate("/login");
-    } else {
-      if (!userInfo.isSubscriber) {
-        navigate("/plans");
-      }
-    }
-
-    dispatch(listProducts());
-  }, [navigate, userInfo]);
   const productList = useSelector((state) => state.productList);
   const { error, loading, products } = productList;
 
-  const productIds = userInfo.mylist;
+
+  useEffect(() => {
+    dispatch(listProducts());
+  }, []);
+
+  if (!userInfo) {
+    navigate("/login");
+  } else {
+    if (!userInfo.isSubscriber) {
+      navigate("/plans");
+    }
+  }
 
   let mappedProducts = [];
   if (products.length > 0) {
