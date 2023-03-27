@@ -66,7 +66,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "http://naigtest.pythonanywhere.com/auth/login/",
+      "https://naigtest.pythonanywhere.com/auth/login/",
       { email: email, password: password },
       config
     );
