@@ -6,7 +6,6 @@ import { listProducts, deleteProduct } from "../Actions/productActions";
 import Loader from "../Components/Loader";
 import Message from "../Components/Message";
 import { useDispatch, useSelector } from "react-redux";
-import DeletedProductScreen from "./DeletedProductScreen";
 
 const ProductListScreen = () => {
   const [search, setSearch] = useState("");
